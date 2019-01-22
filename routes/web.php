@@ -24,12 +24,44 @@ Route::get('/test2',function () {
 Auth::routes();
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function (){
 
-
     Route::get('/home',
         [
             'uses'=>'HomeController@index',
             'as'=>'home'
         ]);
+    //////////////////////Users Routes/////////////////////////////
+    Route::get('/users',[
+        'uses'=>'UsersController@index',
+        'as'=>'users'
+    ]);
+    Route::get('/user/admin/{id}',[
+        'uses'=>'UsersController@admin',
+        'as'=>'user.admin'
+    ])->middleware('admin');
+    Route::get('/user/not-admin/{id}',[
+        'uses'=>'UsersController@not_admin',
+        'as'=>'user.not.admin'
+    ])->middleware('admin');
+    Route::get('/users/create',[
+        'uses'=>'UsersController@create',
+        'as'=>'users.create'
+    ]);
+    Route::post('/users/store',[
+        'uses'=>'UsersController@store',
+        'as'=>'user.store'
+    ]);
+    ///////////////////user profile ROutes////////////////////////////////////
+    Route::get('/user/profile',[
+        'uses'=>'ProfilesController@index',
+        'as'=>'user.profile'
+    ]);
+
+    Route::post('/user/profile/update',[
+        'uses'=>'ProfilesController@update',
+        'as'=>'user.profile.update'
+    ]);
+
+
 /////////////////////////////Post ROUTES//////////////////////
 
     Route::get('/post/create',[

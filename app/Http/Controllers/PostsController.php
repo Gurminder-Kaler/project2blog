@@ -89,6 +89,7 @@ Session::flash('info','Post created successfully');
 //            $file->move('uploads/posts',$featured_new_name);
 //            $post->featured = $featured_new_name;
 //        }
+//
 //        $post->title= $request->title;
 //        $post->content=$request['content'];
 //        $post->category_id =$request->category_id;
